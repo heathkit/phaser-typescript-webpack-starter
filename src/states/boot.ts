@@ -2,7 +2,9 @@ import * as Phaser from 'phaser';
 
 import {fragmentSrc} from '../shaders/example.ts';
 
-export default class extends Phaser.State {
+export class BootState extends Phaser.State {
+  filter: Phaser.Filter;
+
   create() {
     let headerText = 'Boot State';
     let headerTextStyle = {
@@ -12,10 +14,10 @@ export default class extends Phaser.State {
     };
 
     console.log("frag: ", fragmentSrc);
-    this.filter = new Phaser.Filter(this, null, fragmentSrc);
+    this.filter = new Phaser.Filter(this.game, null, fragmentSrc);
     this.filter.setResolution(800, 800);
 
-    let sprite = this.add.sprite();
+    let sprite = this.add.sprite(0,0);
     sprite.width = 800;
     sprite.height = 800;
     sprite.filters = [this.filter];

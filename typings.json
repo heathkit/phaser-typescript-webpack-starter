@@ -1,7 +1,5 @@
 {
   "ambientDependencies": {
-    "p2": "registry:dt/p2#0.7.1+20160317120654",
-    "pixi.js": "registry:dt/pixi.js#3.0.9+20160317120654",
     "require": "registry:dt/require#2.1.20+20160316155526"
   }
 }
