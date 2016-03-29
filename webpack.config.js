@@ -1,32 +1,40 @@
 'use strict';
 
-var path = require('path');
-var phaserModule = path.join(__dirname, '/node_modules/phaser/');
-var glFragmentLoader = path.join(__dirname, '/node_modules/phaser-glsl-loader'),
-  jsonLoader = path.join(__dirname, '/node_modules/json-loader');
-var phaser = path.join(phaserModule, '/dist/phaser.js'),
-  phaserDebug = path.join(__dirname, '/node_modules/phaser-debug/dist/phaser-debug.js');
+var path = require('path')
+var webpack = require('webpack')
+var BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+var definePlugin = new webpack.DefinePlugin({
+  __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
+})
 
 module.exports = {
-  context: __dirname,
-  entry: './src/index.ts',
-  output: {
-    path: path.join(__dirname, 'dist', 'js'),
-    publicPath: 'assets/', // relative path for github pages
-    filename: 'index.js', // no hash in main.js because index.html is a static page
+  entry: {
+    app: [
+      path.resolve(__dirname, 'src/index.ts')
+    ]
   },
-  devtool: 'source-map',
-  target: 'web',
+  devtool: 'cheap-source-map',
+  output: {
+    pathinfo: true,
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: './dist/',
+    filename: 'bundle.js'
+  },
+  watch: true,
+  plugins: [
+    definePlugin,
+    new BrowserSyncPlugin({
+      host: process.env.IP || 'localhost',
+      port: process.env.PORT || 3000,
+      open: false,
+      server: {
+        baseDir: ['./', './build']
+      }
+    }),
+
+  ],
   module: {
     loaders: [
-      {
-        test: /\.frag$/i,
-        loader: 'gl-fragment-loader'
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
-      },
       {
         test: /\.ts$/,
         loader: 'ts-loader'
@@ -36,16 +44,7 @@ module.exports = {
   node: {
     fs: "empty"
   },
-  resolveLoader: {
-    alias: {
-      'gl-fragment-loader': glFragmentLoader,
-      'json-loader': jsonLoader
-    }
-  },
-  resolve: {
-    alias: {
-      'phaser': phaser,
-      'phaser-debug': phaserDebug
-    }
+  externals: {
+    'phaser': 'Phaser'
   }
 };

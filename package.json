@@ -29,17 +29,14 @@
     "test": ""
   },
   "devDependencies": {
+    "browser-sync": "^2.11.2",
+    "browser-sync-webpack-plugin": "^1.0.1",
     "gulp": "3.x.x",
     "gulp-gh-pages": "0.4.x",
     "gulp-task-listing": "1.x.x",
     "gulp-util": "3.x.x",
     "gulp-webpack-build": "0.x.x",
     "json-loader": "^0.5.1",
-    "p2": "0.x.x",
-    "phaser": "2.3.x",
-    "phaser-debug": "1.x.x",
-    "phaser-glsl-loader": "*",
-    "pixi.js": "2.x.x",
     "plato": "1.x.x",
     "ts-loader": "^0.8.1",
     "typescript": "^1.8.9",
@@ -52,6 +49,7 @@
     "errorhandler": "1.3.x",
     "express": "4.x.x",
     "lodash": "3.x.x",
-    "method-override": "2.x.x"
+    "method-override": "2.x.x",
+    "webfontloader": "^1.6.24"
   }
 }

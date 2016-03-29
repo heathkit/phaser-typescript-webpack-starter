@@ -1,5 +1,6 @@
 {
   "ambientDependencies": {
-    "require": "registry:dt/require#2.1.20+20160316155526"
+    "require": "registry:dt/require#2.1.20+20160316155526",
+    "webfontloader": "registry:dt/webfontloader#1.6.4+20160317120654"
   }
 }
