@@ -12,7 +12,7 @@ var phaser = path.join(phaserModule, '/dist/phaser.js'),
 
 module.exports = {
   context: __dirname,
-  entry: './src/index.js',
+  entry: './src/index.ts',
   output: {
     path: path.join(__dirname, 'js'),
     publicPath: 'assets/', // relative path for github pages
