@@ -1,37 +1,31 @@
-import game = require('../game');
-import Phaser = require('phaser');
+import * as Phaser from 'phaser';
 
-var fragmentSrc = require('../shaders/example.frag');
+import {fragmentSrc} from '../shaders/example.ts';
 
-var filter,
-  sprite;
+export default class extends Phaser.State {
+  create() {
+    let headerText = 'Boot State';
+    let headerTextStyle = {
+      font: '26pt Helvetica',
+      fill: '#e0e4f0',
+      align: 'center'
+    };
 
-function createBootState() {
+    console.log("frag: ", fragmentSrc);
+    this.filter = new Phaser.Filter(this, null, fragmentSrc);
+    this.filter.setResolution(800, 800);
 
-  var headerText = 'Boot State';
+    let sprite = this.add.sprite();
+    sprite.width = 800;
+    sprite.height = 800;
+    sprite.filters = [this.filter];
 
-  var headerTextStyle = {
-    font: '26pt Helvetica',
-    fill: '#e0e4f0',
-    align: 'center'
-  };
+    let headText = this.add.text(this.world.centerX, 32, headerText, headerTextStyle);
+  }
 
-  filter = new Phaser.Filter(game, null, fragmentSrc);
-  filter.setResolution(800, 800);
-
-  sprite = game.add.sprite();
-  sprite.width = 800;
-  sprite.height = 800;
-  sprite.filters = [filter];
-
-  var headText = game.add.text(game.world.centerX, 32, headerText, headerTextStyle);
+  update() {
+    this.filter.update(this.input.activePointer);
+  }
 }
 
-function updateBootState() {
-  filter.update(game.input.activePointer);
-}
 
-export var boot = {
-  create: createBootState,
-  update: updateBootState
-};
