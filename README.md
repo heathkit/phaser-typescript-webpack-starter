@@ -1,22 +1,14 @@
-#hello-phaser
+# Phaser skeleton w/ TypeScript and WebPack
 
 ##About
 
+A simple example using Phaser with TypeScript and WebPack. Based on [lean/phaser-es6-webpack](https://github.com/lean/phaser-es6-webpack) and [the-simian/slush-phaser-webpack](https://github.com/the-simian/slush-phaser-webpack).
 
-###Author
-Name: heathkit
-Email: heathkit@google.com
+##Setup
 
-##Get up and running
-
-###Setup
-
-Install all the node modules
 ```sh
 npm install
 
-gulp build
-
-node server
+webpack
 ```
 
